@@ -43,7 +43,7 @@ class ComposerInstaller extends LibraryInstaller
             throw new \InvalidArgumentException("Package type '$type' is not supported at this time.");
         }
 
-        if ($type === 'creasi-module') {
+        if ($type === 'projek-ci-module') {
             return parent::getInstallPath($package);
         }
 
@@ -137,7 +137,7 @@ class ComposerInstaller extends LibraryInstaller
                 }
                 break;
 
-            case 'creasi-module':
+            case 'projek-ci-module':
                 // If the module has migrations, copy them into the application migrations directory
                 $moduleMigrations = $this->getModuleMigrations($downloadPath, 'asset/data');
 
