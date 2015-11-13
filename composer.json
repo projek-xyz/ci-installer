@@ -1,0 +1,44 @@
+{
+    "name": "projek-xyz/ci-installer",
+    "description": "Composer installers for Projek.xyz CI3 Starter Kit",
+    "homepage": "http://www.projek.xyz/ci-installer",
+    "type": "composer-installer",
+    "license": "MIT",
+    "keywords": [
+        "composer", "installer", "codeigniter", "projek-xyz-ci",
+        "projek-ci-module", "module", "HMVC", "core", "library"
+    ],
+    "authors": [
+        {
+            "name": "Jonathon Hill",
+            "email": "jhill9693@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Fery Wardiyanto",
+            "email": "hallo@feryardiant.me",
+            "homepage": "http://feryardiant.me",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "email": "hallo@feryardiant.me"
+    },
+    "autoload": {
+        "psr-4": {
+            "Projek\\CI\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Projek\\CI\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "class": "Projek\\CI\\ComposerInstaller"
+    },
+    "require-dev": {
+        "codeigniter/framework": "dev-3.0-stable",
+        "composer/composer": "1.0.*@dev"
+    }
+}

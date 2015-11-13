@@ -1,0 +1,6 @@
+vendor
+.directory
+composer.lock
+clover.xml
+coveralls-upload.json
+*.sublime-*
