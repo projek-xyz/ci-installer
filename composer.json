@@ -39,6 +39,7 @@
     },
     "require-dev": {
         "codeigniter/framework": "dev-3.0-stable",
-        "composer/composer": "1.0.*@dev"
+        "composer/composer": "1.0.*@dev",
+        "phpunit/phpunit": "~4.0"
     }
 }
