@@ -1,4 +1,4 @@
-# Composer Installer for Creasi CI-Starter
+# Composer Installer for [CI-StartApp](https://github.com/projek-xyz/ci-startapp)
 
 [![License](https://img.shields.io/packagist/l/projek-xyz/ci-installer.svg?style=flat-square)](https://packagist.org/packages/projek-xyz/ci-installer)
 [![Build Status](https://img.shields.io/travis/projek-xyz/ci-installer.svg?style=flat-square)](http://travis-ci.org/projek-xyz/ci-installer)
@@ -30,7 +30,16 @@ To use, simply specify the desired `type` from the list below and `require` the
 }
 ```
 
-It's also support package types that [compwright/codeigniter-installers](https://github.com/compwright/codeigniter-installers#supported-package-types) had except for `spark` (I've remove it, sorry)
+#### Supported Types
+
+[CI-StartApp](https://github.com/projek-xyz/ci-startapp) it self only support 2 package types, which is
+
+- **projek-ci-module**
+- **projek-ci-theme**
+
+_More description soon_
+
+It's also support package types that [compwright/codeigniter-installers](https://github.com/compwright/codeigniter-installers#supported-package-types) had, except for `spark` (I've remove it, sorry)
 
 ## Testing
 
@@ -48,4 +57,4 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+MIT © [Fery Wardiyanto](http://feryardiant.me). Please see [License File](LICENSE.md) for more information.

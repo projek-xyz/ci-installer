@@ -1,6 +1,38 @@
-vendor
+# Generic
+# ------------------------
+Thumbs.db
+Desktop.ini
+Icon?
+.DS_Store
 .directory
+*.cache
+*.old
+*.log
+*~
+*.zip
+
+# Application files
+# ------------------------
+.env
+
+# Dependency folders
+# ------------------------
+vendor/
 composer.lock
-clover.xml
 coveralls-upload.json
+clover.xml
+
+# IDE Files
+#-------------------------
+nbproject/
+.idea/
+.settings/
+.idea/
+.project
 *.sublime-*
+
+# But Keep these files
+# ------------------------
+!index.html
+!.htaccess
+!.gitkeep
