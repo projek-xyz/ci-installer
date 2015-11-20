@@ -134,7 +134,7 @@ class ComposerInstaller extends LibraryInstaller
                     $config = $this->getMigrationConfig($downloadPath);
 
                     if ($this->copyModuleMigrations($config, $moduleMigrations)) {
-                        $this->io->write(count($moduleMigrations).' migrations has been copied to app')
+                        $this->io->write('    '.count($moduleMigrations).' migrations has been copied to app');
                     }
                 }
                 break;
