@@ -87,8 +87,7 @@ class ComposerInstaller extends LibraryInstaller
      */
     protected function installCode(PackageInterface $package)
     {
-        $downloadPath = $this->getInstallPath($package);
-        $this->downloadManager->download($package, $downloadPath);
+        parent::installCode($package);
         $this->postInstallActions($package, $downloadPath);
     }
 
@@ -97,9 +96,8 @@ class ComposerInstaller extends LibraryInstaller
      */
     protected function updateCode(PackageInterface $initial, PackageInterface $target)
     {
-        $downloadPath = $this->getInstallPath($initial);
-        $this->downloadManager->update($initial, $target, $downloadPath);
-        $this->postInstallActions($target, $downloadPath);
+        parent::updateCode($initial, $target);
+        $this->postInstallActions($package, $downloadPath);
     }
 
     /**
@@ -134,7 +132,10 @@ class ComposerInstaller extends LibraryInstaller
                 $moduleMigrations = $this->getModuleMigrations($downloadPath);
                 if (count($moduleMigrations) > 0) {
                     $config = $this->getMigrationConfig($downloadPath);
-                    $this->copyModuleMigrations($config, $moduleMigrations);
+
+                    if ($this->copyModuleMigrations($config, $moduleMigrations)) {
+                        $this->io->write(count($moduleMigrations).' migrations has been copied to app')
+                    }
                 }
                 break;
 
@@ -171,7 +172,8 @@ class ComposerInstaller extends LibraryInstaller
         $moduleMigrationPath = trim($moduleMigrationPath, '/');
         $moduleMigrations    = glob($downloadPath . '/' . $moduleMigrationPath . '/*.php');
 
-        return sort($moduleMigrations);
+        sort($moduleMigrations);
+        return $moduleMigrations;
     }
 
     /**
@@ -183,10 +185,14 @@ class ComposerInstaller extends LibraryInstaller
      */
     protected function copyModuleMigrations(array $config, array $moduleMigrations)
     {
+        $migrationPath = $this->checkMigrationsPath($config);
+        if ($migrationPath === false) {
+            return false;
+        }
+
         if (isset($config['migration_type']) && $config['migration_type'] === 'timestamp') {
             $number = (int) date('YmdHis');
         } else {
-            $migrationPath = $this->checkMigrationsPath($config);
             // Get the latest migration number and increment
             $migrations = glob($migrationPath . '*.php');
             if (count($migrations) > 0) {
@@ -209,6 +215,8 @@ class ComposerInstaller extends LibraryInstaller
 
             $number++;
         }
+
+        return true;
     }
 
     /**
@@ -220,7 +228,7 @@ class ComposerInstaller extends LibraryInstaller
     protected function checkMigrationsPath(array $config)
     {
         // Check if $config['migration_path'] is already defined
-        $migrationPath = isset($config['migration_path']) ? $config['migration_path'] : $appPath . '/migrations/';
+        $migrationPath = isset($config['migration_path']) ? $config['migration_path'] : false;
         // Check if $config['migration_path'] directory is not available yet, create new one
         if (!is_dir($migrationPath)) {
             mkdir($migrationPath, 0755, true);
