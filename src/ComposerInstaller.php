@@ -137,22 +137,22 @@ class ComposerInstaller extends LibraryInstaller
                 }
                 break;
 
-            case 'projek-ci-module':
-                // If the module has migrations, copy them into the application migrations directory
-                // $moduleMigrations = $this->getModuleMigrations($downloadPath, 'asset/data');
+            // case 'projek-ci-module':
+            //     If the module has migrations, copy them into the application migrations directory
+            //     $moduleMigrations = $this->getModuleMigrations($downloadPath, 'asset/data');
 
-                // $confirm = true;
-                // if ($this->io->isInteractive()) {
-                //     $question = 'Do you want to install migration files for ' . $target->getPrettyName();
-                //     $confirm = $this->io->askConfirmation($question);
-                // }
+            //     $confirm = true;
+            //     if ($this->io->isInteractive()) {
+            //         $question = 'Do you want to install migration files for ' . $target->getPrettyName();
+            //         $confirm = $this->io->askConfirmation($question);
+            //     }
 
-                // if (count($moduleMigrations) > 0 && $confirm) {
-                    // $config = $this->getMigrationConfig($downloadPath);
-                    // $this->copyModuleMigrations($config, $moduleMigrations);
-                    // $this->io->write('<info>Installed</info>');
-                // }
-                break;
+            //     if (count($moduleMigrations) > 0 && $confirm) {
+            //         $config = $this->getMigrationConfig($downloadPath);
+            //         $this->copyModuleMigrations($config, $moduleMigrations);
+            //         $this->io->write('<info>Installed</info>');
+            //     }
+            //     break;
         }
     }
 
