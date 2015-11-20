@@ -21,8 +21,8 @@ class ComposerInstaller extends LibraryInstaller
         'codeigniter-core'        => '{application}/core/{name}/',
         'codeigniter-third-party' => '{application}/third_party/{name}/',
         'codeigniter-module'      => '{application}/modules/{name}/',
-        'projek-ci-module'           => '',
-        'projek-ci-theme'           => '',
+        'projek-ci-module'        => '',
+        'projek-ci-theme'         => '',
     );
 
     /**
@@ -132,7 +132,7 @@ class ComposerInstaller extends LibraryInstaller
                 // If the module has migrations, copy them into the application migrations directory
                 $moduleMigrations = $this->getModuleMigrations($downloadPath);
                 if (count($moduleMigrations) > 0) {
-                    $config = $this->getMigrationConfig();
+                    $config = $this->getMigrationConfig($downloadPath);
                     $this->copyModuleMigrations($config, $moduleMigrations);
                 }
                 break;
@@ -148,7 +148,7 @@ class ComposerInstaller extends LibraryInstaller
                 // }
 
                 // if (count($moduleMigrations) > 0 && $confirm) {
-                    // $config = $this->getMigrationConfig();
+                    // $config = $this->getMigrationConfig($downloadPath);
                     // $this->copyModuleMigrations($config, $moduleMigrations);
                     // $this->io->write('<info>Installed</info>');
                 // }
@@ -233,7 +233,7 @@ class ComposerInstaller extends LibraryInstaller
      *
      * @return array
      */
-    protected function getMigrationConfig()
+    protected function getMigrationConfig($downloadPath)
     {
         // Check CI APPPATH
         $appPath = defined('APPPATH') ? APPPATH : dirname(dirname($downloadPath));
