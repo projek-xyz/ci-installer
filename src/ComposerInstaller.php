@@ -169,7 +169,7 @@ class ComposerInstaller extends LibraryInstaller
     protected function getModuleMigrations($downloadPath, $moduleMigrationPath = 'asset/data')
     {
         $moduleMigrationPath = trim($moduleMigrationPath, '/');
-        $moduleMigrations    = glob($downloadPath . $moduleMigrationPath . '/*.php');
+        $moduleMigrations    = glob($downloadPath . '/' . $moduleMigrationPath . '/*.php');
 
         return sort($moduleMigrations);
     }
