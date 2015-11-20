@@ -88,7 +88,7 @@ class ComposerInstaller extends LibraryInstaller
     protected function installCode(PackageInterface $package)
     {
         parent::installCode($package);
-        $this->postInstallActions($package, $downloadPath);
+        $this->postInstallActions($package, $this->getInstallPath($package));
     }
 
     /**
@@ -97,7 +97,7 @@ class ComposerInstaller extends LibraryInstaller
     protected function updateCode(PackageInterface $initial, PackageInterface $target)
     {
         parent::updateCode($initial, $target);
-        $this->postInstallActions($package, $downloadPath);
+        $this->postInstallActions($target, $this->getInstallPath($initial));
     }
 
     /**
