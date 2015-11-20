@@ -128,6 +128,7 @@ class ComposerInstaller extends LibraryInstaller
                 }
                 break;
 
+            case 'projek-ci-module':
             case 'codeigniter-module':
                 // If the module has migrations, copy them into the application migrations directory
                 $moduleMigrations = $this->getModuleMigrations($downloadPath);
@@ -165,7 +166,7 @@ class ComposerInstaller extends LibraryInstaller
      *                                     any slash will be trimmed
      * @return bool
      */
-    protected function getModuleMigrations($downloadPath, $moduleMigrationPath = 'migrations')
+    protected function getModuleMigrations($downloadPath, $moduleMigrationPath = 'asset/data')
     {
         $moduleMigrationPath = trim($moduleMigrationPath, '/');
         $moduleMigrations    = glob($downloadPath . $moduleMigrationPath . '/*.php');
