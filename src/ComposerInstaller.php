@@ -230,7 +230,7 @@ class ComposerInstaller extends LibraryInstaller
         // Check if $config['migration_path'] is already defined
         $migrationPath = isset($config['migration_path']) ? $config['migration_path'] : false;
         // Check if $config['migration_path'] directory is not available yet, create new one
-        if (!is_dir($migrationPath)) {
+        if ($migrationPath !== false && !is_dir($migrationPath)) {
             mkdir($migrationPath, 0755, true);
         }
 
