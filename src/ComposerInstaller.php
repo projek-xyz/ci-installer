@@ -244,8 +244,10 @@ class ComposerInstaller extends LibraryInstaller
      */
     protected function getMigrationConfig($downloadPath)
     {
+        $extra = ($pkg = $this->composer->getPackage()) ? $pkg->getExtra() : array();
         // Check CI APPPATH
-        $appPath = defined('APPPATH') ? APPPATH : dirname(dirname($downloadPath));
+        $appPath = defined('APPPATH') ? APPPATH : $extra['codeigniter-application-dir'];
+        // $appPath = defined('APPPATH') ? APPPATH : dirname(dirname($downloadPath));
         // Load CI Migration Config
         @include $appPath . '/config/migration.php';
 
