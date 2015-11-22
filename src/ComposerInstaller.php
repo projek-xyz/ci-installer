@@ -190,13 +190,19 @@ class ComposerInstaller extends LibraryInstaller
             return false;
         }
 
+        $migrations = glob($migrationPath . '*.php');
+        $old_migration_names = array();
+
+        sort($migrations);
+        foreach ($migrations as $migration) {
+            $old_migration_names[] = $this->getMigrationName($migration);
+        }
+
         if (isset($config['migration_type']) && $config['migration_type'] === 'timestamp') {
             $number = (int) date('YmdHis');
         } else {
             // Get the latest migration number and increment
-            $migrations = glob($migrationPath . '*.php');
             if (count($migrations) > 0) {
-                sort($migrations);
                 $migration = array_pop($migrations);
                 $number    = ((int) basename($migration)) + 1;
             } else {
@@ -206,17 +212,32 @@ class ComposerInstaller extends LibraryInstaller
 
         // Copy each migration into the application migration directory
         foreach ($moduleMigrations as $migration) {
-            // Re-number the migration
-            $newMigration = $migrationPath .
-            preg_replace('/^(\d+)/', sprintf('%03d', $number), basename($migration));
+            if (array_search($this->getMigrationName($migration), $old_migration_names) === false) {
+                // Re-number the migration
+                $newMigration = $migrationPath .
+                preg_replace('/^(\d+)/', sprintf('%03d', $number), basename($migration));
 
-            // Copy the migration file
-            copy($migration, $newMigration);
+                // Copy the migration file
+                copy($migration, $newMigration);
 
-            $number++;
+                $number++;
+            }
         }
 
         return true;
+    }
+
+    /**
+     * Extracts the migration number from a filename
+     *
+     * @param   string  $migration
+     * @return  string  Numeric portion of a migration filename
+     */
+    private function getMigrationName($migration)
+    {
+        $migration = explode('_', $migration);
+        array_shift($migration);
+        return implode('_', $migration);
     }
 
     /**
