@@ -132,9 +132,12 @@ class ComposerInstaller extends LibraryInstaller
                 $moduleMigrations = $this->getModuleMigrations($downloadPath);
                 if (count($moduleMigrations) > 0) {
                     $config = $this->getMigrationConfig($downloadPath);
+                    $copied = $this->copyModuleMigrations($config, $moduleMigrations);
 
-                    if ($this->copyModuleMigrations($config, $moduleMigrations)) {
-                        $this->io->write('    '.count($moduleMigrations).' migrations has been copied to app');
+                    if ($copied) {
+                        $this->io->write('    '.$copied.' migrations has been copied to app'.PHP_EOL);
+                    } else {
+                        $this->io->write('    no migrations available'.PHP_EOL);
                     }
                 }
                 break;
@@ -192,6 +195,7 @@ class ComposerInstaller extends LibraryInstaller
 
         $migrations = glob($migrationPath . '*.php');
         $old_migration_names = array();
+        $copied = 0;
 
         sort($migrations);
         foreach ($migrations as $migration) {
@@ -221,10 +225,11 @@ class ComposerInstaller extends LibraryInstaller
                 copy($migration, $newMigration);
 
                 $number++;
+                $copied++;
             }
         }
 
-        return true;
+        return $copied;
     }
 
     /**
