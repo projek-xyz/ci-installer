@@ -18,7 +18,6 @@ Icon?
 # Dependency folders
 # ------------------------
 vendor/
-composer.lock
 coveralls-upload.json
 clover.xml
 

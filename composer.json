@@ -16,13 +16,13 @@
         },
         {
             "name": "Fery Wardiyanto",
-            "email": "hallo@feryardiant.me",
-            "homepage": "http://feryardiant.me",
-            "role": "Maintainer"
+            "email": "feryardiyanto@gmail.com",
+			"role": "Maintainer"
         }
     ],
     "support": {
-        "email": "hallo@feryardiant.me"
+        "issues": "https://github.com/projek-xyz/ci-installer/issues",
+        "source": "https://github.com/projek-xyz/ci-installer"
     },
     "autoload": {
         "psr-4": {
@@ -38,8 +38,17 @@
         "class": "Projek\\CI\\ComposerInstaller"
     },
     "require-dev": {
-        "codeigniter/framework": "dev-3.0-stable",
-        "composer/composer": "1.0.*@dev",
+        "codeigniter/framework": "^3.0",
         "phpunit/phpunit": "~4.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "composer/installers": "^1.9"
     }
 }
